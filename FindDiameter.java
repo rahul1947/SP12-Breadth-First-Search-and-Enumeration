@@ -9,14 +9,12 @@ import rbk.Graph;
 import rbk.Graph.Vertex;
 
 /**
- * CS 5V81.001: Implementation of Data Structures and Algorithms 
- * Short Project SP12: Find Diameter of a Tree
- * Team: SP11 33
+ * CS 5V81: Implementation of Data Structures and Algorithms
+ * Short Project SP12: Breadth First Search and Enumeration
  * @author Rahul Nalawade (rsn170330)
- * @author Pooja Srinivasan (pxs176230)
+ * 
+ * Date: November 25, 2018
  */
-
-
 
 /**
  * 1. Implement the algorithm to find the diameter of a tree using the 
@@ -75,8 +73,5 @@ public class FindDiameter {
 		Graph g = Graph.readGraph(in); // NOTE: read the graph as 'undirected' graph
 		
 		System.out.println("Diamter: " + diameter(g));
-		
-
 	}
-
 }
