@@ -16,7 +16,8 @@ _______________________________________________________________________________
 ## Problems:
 
 
-Team Task:
+####Team Task: 
+
 **Problem 1.** 
    Implement the algorithm to find the diameter of a tree using the algorithm 
    discussed in class, that runs BFS twice. Code this algorithm without 
@@ -26,7 +27,7 @@ Team Task:
    int diameter(Graph g) { ... }  
 ```
 
-Optional tasks (individual): 
+####Optional tasks (individual): 
 
 **Problem 2.**
    Implement a BFS based algorithm to output an odd-length cycle of a graph. 
