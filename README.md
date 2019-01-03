@@ -17,7 +17,7 @@ _______________________________________________________________________________
 
 
 Team Task:
-** Problem 1.** 
+**Problem 1.** 
    Implement the algorithm to find the diameter of a tree using the algorithm 
    discussed in class, that runs BFS twice. Code this algorithm without 
    modifying Graph.java and BFSOO.java, using them from package rbk.
@@ -28,7 +28,7 @@ Team Task:
 
 Optional tasks (individual): 
 
-** Problem 2.**
+**Problem 2.**
    Implement a BFS based algorithm to output an odd-length cycle of a graph. 
    
    If the graph is bipartite, it returns null. 
@@ -56,24 +56,26 @@ Optional tasks (individual):
 
 The following methods are related to Enumerate.java. 
 Changing the signature of select from the following:
-`public boolean select(T item) { return true; }`
+```
+   public boolean select(T item) { return true; }
+```
 
 to the following, makes it easier to write approvers:
 ```
-	public boolean select(T[] arr, int index, T item) { return true; }
-	// arr[0..index-1] is frozen, and item is being considered for arr[index].
+   // arr[0..index-1] is frozen, and item is being considered for arr[index].
+   public boolean select(T[] arr, int index, T item) { return true; }	
 ```
 
-** Problem 3.** 
+**Problem 3.** 
    Implement the algorithm to enumerate all paths from s to t in a DAG.
    Code this algorithm by using the permute method of Enumerate.java,
    and writing an Approver in a new class, that extends Enumerate.Approver.
 
-** Problem 4.**
+**Problem 4.**
    Enumerate all permutations of 1..n, in which no two consecutive integers in
    the chosen permutations are both odd, or, are both even.
    If n = 4, the permutations visited are:
-
+```
    1 2 3 4
    1 4 3 2
    2 1 4 3
@@ -82,7 +84,7 @@ to the following, makes it easier to write approvers:
    3 4 1 2
    4 1 2 3
    4 3 2 1
-
+```
    All other permutations have 2 consecutive odd numbers or 2 consecutive even 
    numbers. Avoid exploring any permutation that starts with 1 3 right at the 
    time when 3 is considered for the second position, instead of waiting till 
