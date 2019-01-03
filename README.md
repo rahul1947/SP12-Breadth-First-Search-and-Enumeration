@@ -15,7 +15,7 @@
 _______________________________________________________________________________
 ## Problems:
 
-
+### Breadth First Search -
 #### Team Task: 
 
 **Problem 1.** 
@@ -56,10 +56,10 @@ _______________________________________________________________________________
 ```
 **Solution: ** -
 
--------------------------------------------------------------------------------
+### Enumeration -
 
-The following methods are related to Enumerate.java. 
-Changing the signature of select from the following:
+The following methods are related to Enumerate.java. Changing the signature 
+of select from the following:
 ```
    public boolean select(T item) { return true; }
 ```
