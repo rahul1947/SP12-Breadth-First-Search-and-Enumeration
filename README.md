@@ -26,6 +26,7 @@ _______________________________________________________________________________
    // assume that g is an acyclic, connected graph (tree).
    int diameter(Graph g) { ... }  
 ```
+**Solution: ** [FindDiameter.java](https://github.com/rahul1947/SP12-Breadth-First-Search-and-Enumeration/blob/master/FindDiameter.java) 
 
 #### Optional tasks (individual): 
 
@@ -53,6 +54,8 @@ _______________________________________________________________________________
    // do not assume that g is connected
    List<Vertex> oddCycle(Graph g) { ... }  
 ```
+**Solution: ** -
+
 -------------------------------------------------------------------------------
 
 The following methods are related to Enumerate.java. 
@@ -71,6 +74,8 @@ to the following, makes it easier to write approvers:
    Implement the algorithm to enumerate all paths from s to t in a DAG.
    Code this algorithm by using the permute method of Enumerate.java,
    and writing an Approver in a new class, that extends Enumerate.Approver.
+
+**Solution: ** [EnumeratePath.java](https://github.com/rahul1947/SP12-Breadth-First-Search-and-Enumeration/blob/master/EnumeratePath.java) 
 
 **Problem 4.**
    Enumerate all permutations of 1..n, in which no two consecutive integers in
@@ -93,5 +98,8 @@ to the following, makes it easier to write approvers:
    
    This problem can be solved by writing a suitable Approver, or writing the 
    enumerate code from scratch.
+
+**Solution: ** - 
+
 _______________________________________________________________________________
    

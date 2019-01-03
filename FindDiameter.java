@@ -12,6 +12,7 @@ import rbk.Graph.Vertex;
  * CS 5V81: Implementation of Data Structures and Algorithms
  * Short Project SP12: Breadth First Search and Enumeration
  * @author Rahul Nalawade (rsn170330)
+ * @author Pooja Srinivasan (pxs176230)
  * 
  * Date: November 25, 2018
  */
