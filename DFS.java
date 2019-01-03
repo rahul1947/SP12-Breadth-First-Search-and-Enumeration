@@ -248,7 +248,7 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
 	}
 	
 	/**
-	 * Find topological oder of a DAG using DFS method 1.
+	 * Find topological order of a DAG using DFS method 1.
 	 * @param g the input graph
 	 * @return the List of vertices in order of DFS, if not DAG return null	
 	 */
