@@ -20,15 +20,6 @@ import java.util.Scanner;
  * Date: November 24, 2018
  */
 
-/**
- * Team task: 
- * 1. Implement the algorithm to find strongly connected components of a directed graph. 
- * Add the method to your DFS class from SP8.  Make changes so that all methods share 
- * as much of the code as possible. 
- * 
- * public static DFS stronglyConnectedComponents(Graph g) { ... }
- */
-
 public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
 	private int cno; // Component no of the DFS graph
 	private int topNum; // topNum = No of Vertices = |V|
@@ -378,6 +369,70 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
 			System.out.print(u + " ");
 		}
 		System.out.println();
-		
 	}
 }
+/** 
+EXPECTED OUTPUT: 
+# SP10 - STRONGLY CONNECTED COMPONENTS: 
+____________________________________________________________
+Graph: n: 11, m: 17, directed: true, Edge weights: false
+1 :  (1,11)
+2 :  (2,3) (2,7)
+3 :  (3,10)
+4 :  (4,1) (4,9)
+5 :  (5,4) (5,7) (5,8)
+6 :  (6,3)
+7 :  (7,8)
+8 :  (8,2)
+9 :  (9,11)
+10 :  (10,6)
+11 :  (11,3) (11,4) (11,6)
+____________________________________________________________
+Number of components: 4
+u	cno
+1	3
+2	2
+3	4
+4	3
+5	1
+6	4
+7	2
+8	2
+9	3
+10	4
+11	3
+
+# SP08 - CONNECTED COMPONENTS AND TOPOLOGICAL ORDERINGS: 
+____________________________________________________________
+Graph: n: 10, m: 12, directed: true, Edge weights: false
+1 :  (1,3) (1,8)
+2 :  (2,4)
+3 :  (3,2)
+4 :  (4,7)
+5 :  (5,10) (5,4)
+6 :  (6,8) (6,10)
+7 : 
+8 :  (8,2) (8,5)
+9 : 
+10 :  (10,9)
+____________________________________________________________
+Number of components: 2
+u	cno
+1	1
+2	1
+3	1
+4	1
+5	1
+6	2
+7	1
+8	1
+9	1
+10	1
+
+Topological Ordering 1: 
+6 1 8 5 10 9 3 2 4 7 
+
+Topological Ordering 2: 
+1 6 3 8 2 5 10 4 9 7 
+
+ */

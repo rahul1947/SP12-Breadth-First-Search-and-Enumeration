@@ -251,21 +251,19 @@ public class EnumeratePath extends GraphAlgorithm<EnumeratePath.EnumVertex> {
 	// --------------------------- MAIN METHOD -------------------------------
 	public static void main(String[] args) throws Exception {
 		
-		boolean VERBOSE = false;
+		boolean VERBOSE = true;
 		if (args.length > 0) { VERBOSE = Boolean.parseBoolean(args[0]); }
 		
 		Scanner in;
 		String graph = "6 7   1 2 1   1 3 1   2 4 1   3 4 1   3 5 1   4 6 1   5 6 1 0"; // 3 paths
-		 graph = "4 3   1 2 1   2 3 1   3 4 1 0"; // 1 path only: 1 2 3 4
-		// graph = "7 6   1 2 1   1 4 1   2 3 1   4 3 1   4 5 1   6 7 1 0"; // no paths
+		//graph = "4 3   1 2 1   2 3 1   3 4 1 0"; // 1 path only: 1 2 3 4
+		//graph = "7 6   1 2 1   1 4 1   2 3 1   4 3 1   4 5 1   6 7 1 0"; // no paths
 		
 		// If there is a command line argument, use it as file from which
 		// input is read, otherwise use input from string.
 		in = (args.length > 1) ? new Scanner(new File(args[1])) : new Scanner(graph);
 		Graph g = Graph.readDirectedGraph(in);
-		 
-		// Graph g = Graph.readDirectedGraph(new Scanner(graph));
-		//g.printGraph(false);
+		g.printGraph(false);
 		
 		long result;
 		Graph.Timer t = new Graph.Timer();
@@ -279,3 +277,25 @@ public class EnumeratePath extends GraphAlgorithm<EnumeratePath.EnumVertex> {
 		System.out.println("\nNumber of Paths: " + result + "\n" + t.end());
 	}
 }
+
+/** 
+EXPECTED OUTPUT: 
+____________________________________________________________
+Graph: n: 6, m: 7, directed: true, Edge weights: false
+1 :  (1,2) (1,3)
+2 :  (2,4)
+3 :  (3,4) (3,5)
+4 :  (4,6)
+5 :  (5,6)
+6 : 
+____________________________________________________________
+1 2 4 6 
+1 3 4 6 
+1 3 5 6 
+
+Number of Paths: 3
+Time: 2 msec.
+Memory: 1 MB / 117 MB.
+
+ */
+

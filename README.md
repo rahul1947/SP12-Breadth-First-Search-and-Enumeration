@@ -4,7 +4,8 @@
    a Graph) using BFS.
 2. Implementation of an Algorithm to find Odd-Length Cycle in a Tree. 
 3. Implementation of Enumeration of all Paths in a connected Graph. 
-4. Enumeration of all permutation with alternate parities. 
+4. Enumeration of all permutation with alternate parities in lexicographic 
+   order. 
 
 ### Author
 * [Rahul Nalawade](https://github.com/rahul1947)
@@ -27,6 +28,21 @@ _______________________________________________________________________________
    int diameter(Graph g) { ... }  
 ```
 **Solution:** [FindDiameter.java](https://github.com/rahul1947/SP12-Breadth-First-Search-and-Enumeration/blob/master/FindDiameter.java) 
+```
+Sample Output: 
+____________________________________________________________
+Graph: n: 8, m: 7, directed: false, Edge weights: false
+1 :  (1,2) (1,3)
+2 :  (1,2) (2,4) (2,5)
+3 :  (1,3)
+4 :  (2,4) (4,6)
+5 :  (2,5) (5,7)
+6 :  (4,6)
+7 :  (5,7) (7,8)
+8 :  (7,8)
+____________________________________________________________
+Diameter: 5
+```
 
 #### Optional tasks (individual): 
 
@@ -76,6 +92,25 @@ to the following, makes it easier to write approvers:
    and writing an Approver in a new class, that extends Enumerate.Approver.
 
 **Solution:** [EnumeratePath.java](https://github.com/rahul1947/SP12-Breadth-First-Search-and-Enumeration/blob/master/EnumeratePath.java) 
+```
+Sample Output: 
+____________________________________________________________
+Graph: n: 6, m: 7, directed: true, Edge weights: false
+1 :  (1,2) (1,3)
+2 :  (2,4)
+3 :  (3,4) (3,5)
+4 :  (4,6)
+5 :  (5,6)
+6 : 
+____________________________________________________________
+1 2 4 6 
+1 3 4 6 
+1 3 5 6 
+
+Number of Paths: 3
+Time: 2 msec.
+Memory: 1 MB / 117 MB.
+```
 
 **Problem 4.**
    Enumerate all permutations of 1..n, in which no two consecutive integers in
