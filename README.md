@@ -43,7 +43,7 @@ ____________________________________________________________
 Diameter: 5
 ```
 
-#### B. Optional tasks (individual) - Bread First Search: 
+#### B. Optional tasks (individual) - Breadth First Search: 
 
 **Problem 2.**
    Implement a BFS based algorithm to output an odd-length cycle of a graph. 
