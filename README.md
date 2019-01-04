@@ -1,4 +1,4 @@
-# Short Project SP12: Breadth First Search and Enumeration
+## Short Project SP12: Breadth First Search and Enumeration
 
 1. Implementation of an Algorithm to find Diameter of a Tree (represented as 
    a Graph) using BFS.
@@ -7,17 +7,16 @@
 4. Enumeration of all permutation with alternate parities in lexicographic 
    order. 
 
-### Author
+#### Author
 * [Rahul Nalawade](https://github.com/rahul1947)
 
-### Date
-* Thu, Nov 15-25, 2018
+#### Date
+* Nov 25, 2018
 
 _______________________________________________________________________________
-## Problems:
+### Problems:
 
-### [A] Breadth First Search -
-#### Team Task: 
+#### A. Team Task - Breadth First Search: 
 
 **Problem 1.** 
    Implement the algorithm to find the diameter of a tree using the algorithm 
@@ -44,7 +43,7 @@ ____________________________________________________________
 Diameter: 5
 ```
 
-#### Optional tasks (individual): 
+#### B. Optional tasks (individual) - Bread First Search: 
 
 **Problem 2.**
    Implement a BFS based algorithm to output an odd-length cycle of a graph. 
@@ -72,7 +71,7 @@ Diameter: 5
 ```
 **Solution:** -
 
-### [B] Enumeration -
+#### C. Optional tasks (individual) - Enumeration: 
 
 The following methods are related to Enumerate.java. Changing the signature 
 of select from the following:
