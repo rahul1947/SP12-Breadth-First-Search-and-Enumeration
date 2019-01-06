@@ -47,17 +47,13 @@ Diameter: 5
 
 **Problem 2.**
    Implement a BFS based algorithm to output an odd-length cycle of a graph. 
-   
    If the graph is bipartite, it returns null. 
-   
    The problem can be solved as follows.
    1. Run BFS on the graph.  If it is not connected, you should run BFS on 
    each component.
-   
    2. If there is any edge e = (u,v) with u.distance = v.distance, then the 
    graph has an odd-length cycle. 
    Otherwise, it is bipartite, and has no odd-length cycles.
-   
    3. Once you find such an edge, an odd-length cycle can be found by going 
    up the BFS tree using parent links, from u and v in tandem, until reaching 
    their least common ancestor in the BFS tree containing u and v. 
@@ -86,8 +82,8 @@ to the following, makes it easier to write approvers:
 ```
 
 **Problem 3.** 
-   Implement the algorithm to enumerate all paths from s to t in a DAG.
-   Code this algorithm by using the permute method of Enumerate.java,
+   Implement the algorithm to enumerate all paths from s (source) to t (sink) 
+   in a DAG. Code this algorithm by using the permute method of Enumerate.java,
    and writing an Approver in a new class, that extends Enumerate.Approver.
 
 **Solution:** [EnumeratePath.java](https://github.com/rahul1947/SP12-Breadth-First-Search-and-Enumeration/blob/master/EnumeratePath.java) 
