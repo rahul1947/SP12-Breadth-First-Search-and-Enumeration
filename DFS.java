@@ -19,9 +19,8 @@ import java.util.Scanner;
  * 
  * Date: November 24, 2018
  */
-
 public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
-	private int cno; // Component no of the DFS graph
+	private int cno; // No of components of the DFS graph
 	private int topNum; // topNum = No of Vertices = |V|
 	
 	private LinkedList<Vertex> finishList; // to store topological ordering
@@ -37,7 +36,7 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
 		private Vertex parent; // parent of this node
 		private int inDegrees; // number of inDegrees of this node
 		
-		// default constructor
+		// Default constructor
 		public DFSVertex(Vertex u) {
 			seen = false;
 			vColor = Color.WHITE; // Not used, for reference
@@ -47,7 +46,7 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
 			inDegrees = 0;
 			cno = 0;
 		}
-
+		
 		public DFSVertex make(Vertex u) {
 			return new DFSVertex(u);
 		}
@@ -61,17 +60,33 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
 		public void setParent(Vertex parent) {
 			this.parent = parent;
 		}
-
+		
 		// Not used, just for reference
 		public enum Color {
 			WHITE, GRAY, BLACK;
 		}
 	} 
 	
-	// default constructor
-	// NOTE: setting it private because we don't need to make a public handle 
-	// for some methods (like connectedComponents()) which need to run DFS before 
-	// they are called.
+	// Can be queried for a graph which was supposed to be DAG
+	public boolean isCyclic() {
+		return isCyclic;
+	}
+	
+	// setter method
+	public void setCyclic(boolean isCyclic) {
+		this.isCyclic = isCyclic;
+	}
+	
+	//----------------------- Depth-First-Search -----------------------------
+	
+	/** 
+	 * Default constructor 
+	 * NOTE: setting it private because we don't need to make a public handle 
+	 * for some methods (like connectedComponents()) which need to run DFS 
+	 * before they are called.
+	 * 
+	 * @param g the input Graph
+	 */
 	private DFS(Graph g) {
 
 		super(g, new DFSVertex(null));
@@ -79,27 +94,6 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
 		finishList = new LinkedList<>();
 		cno = 0;
 		setCyclic(false);
-	}
-	
-	/**
-	 * Find strongly connected components of a DIRECTED graph.
-	 * @param g the input graph
-	 * @return the DFS object containing with updated relevant attributes
-	 */
-	public static DFS stronglyConnectedComponents(Graph g) {
-		DFS d = new DFS(g);
-		d.dfs(g);
-		
-		List<Vertex> list = d.finishList;
-		
-		//System.out.println(Arrays.toString(list.toArray()));
-		
-		g.reverseGraph();
-		
-		d.dfs(list);
-		g.reverseGraph();
-		
-		return d;
 	}
 	
 	/**
@@ -130,7 +124,8 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
 			get(u).setParent(null);
 		}
 		
-		finishList = new LinkedList<>();
+		// new LinkedList: to avoid Concurrent Modification Exception
+		finishList = new LinkedList<>(); 
 		cno = 0; // NOTE: class variable
 		
 		for (Vertex u: iterable) {
@@ -186,11 +181,61 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
 		//System.out.print(" <- "+u+"("+get(u).top+")"); // uncomment to trace()*
 	}
 	
-
+	//---------------------- Connected Components ----------------------------
+	
 	/**
-	 * Method to update finishList which stores the nodes visited 
-	 * in increasing order of inDegrees (using method 2) FROM CLASS NOTES
+	 * Find strongly connected components of a DIRECTED graph. 
+	 * NOTE: Vertex u and v are strongly connected iff
+	 * there exists a path for u to v as well as from v to u.  
+	 * 
 	 * @param g the input graph
+	 * @return the DFS object containing with updated relevant attributes
+	 */
+	public static DFS stronglyConnectedComponents(Graph g) {
+		DFS d = new DFS(g);
+		d.dfs(g); // to get a topological order 
+		List<Vertex> list = d.finishList; 
+		
+		g.reverseGraph();
+		
+		// DFS by visiting Vertices in a Topological Order
+		d.dfs(list);
+		
+		g.reverseGraph(); // making edges the same as before
+		return d;
+	}
+	
+	/**
+	 * Find the number of connected components of a DAG by running DFS.
+	 *  
+	 * Enter the component number of each vertex u in u.cno. 
+	 * Note that the graph g is available as a class field via GraphAlgorithm.
+	 * @return total number of components
+	 */
+	public int connectedComponents() {
+		return cno; // NOTE: No of components of a Graph = No of source vertices
+		// source vertices: vertices with no incoming edge (inDegree = 0)
+	}
+	
+	/**
+	 * Precondition: Run strongly connected components, or 
+	 * connected components algorithm. 
+	 * 
+	 * Returns Component no of vertex u.
+	 * @param u the vertex
+	 * @return component number of vertex u
+	 */
+	public int cno(Vertex u) {
+		return get(u).cno;
+	}
+	
+	// ---------------------- Topological Order ------------------------------
+	
+	/**
+	 * Method to update finishList which stores the nodes visited in order of 
+	 * their inDegrees = 0 (using method 2)
+	 * 
+	 * @param g the input Graph
 	 */
 	private void topologicalOrdering2(Graph g) {
 		Queue<Vertex> zeroQ = new LinkedList<>();
@@ -218,33 +263,9 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
 					zeroQ.add(v);
 			}
 		}
-		
+		// When Graph is not a DAG
 		if (count != g.size())
 			setCyclic(true);
-		
-	}
-	
-	/**
-	 * Find the number of connected components of a DAG by running DFS.
-	 *  
-	 * Enter the component number of each vertex u in u.cno. 
-	 * Note that the graph g is available as a class field via GraphAlgorithm.
-	 * @return total number of components
-	 */
-	public int connectedComponents() {
-		return cno;
-	}
-
-	/**
-	 * Precondition: Run strongly connected components, or 
-	 * connected components algorithm. 
-	 * 
-	 * Returns Component no of vertex u.
-	 * @param u the vertex
-	 * @return component number of vertex u
-	 */
-	public int cno(Vertex u) {
-		return get(u).cno;
 	}
 	
 	/**
@@ -288,22 +309,13 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
 		
 		return this.finishList;
 	}
-
-	// Can be queried for a graph which was supposed to be DAG
-	public boolean isCyclic() {
-		return isCyclic;
-	}
 	
-	// setter method
-	public void setCyclic(boolean isCyclic) {
-		this.isCyclic = isCyclic;
-	}
+	// ---------------------------------- MAIN METHOD ---------------------------------------
 	
-	// --------------------------- MAIN METHOD -------------------------------
 	public static void main(String[] args) throws Exception {
 		//String string = "7 6   1 2 2   1 3 3   2 4 5   3 4 4   4 5 1   6 7 1 0";
 		
-		// Graph from Class Notes
+		//---------------------------- Graph for SCC (not a DAG) ----------------------------
 		String string = "11 17   1 11 1   2 3 1   2 7 1   3 10 1   4 1 1   4 9 1   5 4 1   "+
 		"5 7 1   5 8 1   6 3 1   7 8 1   8 2 1   9 11 1   10 6 1   11 3 1   11 4 1   11 6 1 0";
 		
@@ -321,7 +333,7 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
 		
 		System.out.println("# SP10 - STRONGLY CONNECTED COMPONENTS: ");
 		g.printGraph(false);
-		System.out.println("Number of components: " + numSCC + "\nu\tcno");
+		System.out.println("Number of strongly connected components: " + numSCC + "\nu\tcno");
 		for (Vertex u: g) {
 			System.out.println(u + "\t" + dSCC.cno(u));
 		}
@@ -344,7 +356,7 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
 		
 		g.printGraph(false);
 
-		System.out.println("Number of components: " + numcc + "\nu\tcno");
+		System.out.println("Number of connected components: " + numcc + "\nu\tcno");
 		for (Vertex u: g) {
 			System.out.println(u + "\t" + d.cno(u));
 		}
@@ -388,7 +400,7 @@ Graph: n: 11, m: 17, directed: true, Edge weights: false
 10 :  (10,6)
 11 :  (11,3) (11,4) (11,6)
 ____________________________________________________________
-Number of components: 4
+Number of strongly connected components: 4
 u	cno
 1	3
 2	2
@@ -416,7 +428,7 @@ Graph: n: 10, m: 12, directed: true, Edge weights: false
 9 : 
 10 :  (10,9)
 ____________________________________________________________
-Number of components: 2
+Number of connected components: 2
 u	cno
 1	1
 2	1
